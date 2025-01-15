@@ -1,0 +1,82 @@
+{
+    "sitesMap": [
+        {
+            "site": "DepartmentA",
+            "assets": {
+                "line1": {
+                    "machineA": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineB": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineC": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ]
+                },
+                "line2": {
+                    "machineA": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineB": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineC": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ]
+                }
+            }
+        },
+        {
+            "site": "DepartmentB",
+            "assets": {
+                "line1": {
+                    "machineA": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineB": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineC": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ]
+                },
+                "line2": {
+                    "machineA": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineB": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ],
+                    "machineC": [
+                        "amps",
+                        "voltage",
+                        "powerAcc"
+                    ]
+                }
+            }
+        }
+    ]
+}
