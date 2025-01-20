@@ -1,9 +1,17 @@
 import json
-from opcua import ua, Server, Node
 import random
 import time
 import os
-
+import sys
+import logging
+from opcua import ua, Server, Node
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 class UnifiedNamespaceOpcUaServer:
     def __init__(self, endpoint="opc.tcp://0.0.0.0:4840/", json_file="uns.json", frequency=1):
         self.server = Server()
@@ -57,7 +65,7 @@ class UnifiedNamespaceOpcUaServer:
                         var = machine_node.add_variable(self.my_idx, item, 0.0)
                         var.set_writable()
                         self.variables[var_name] = var
-                        print(f"Created {var_name} in {var}")
+                        logging.debug(f"Created {var_name} in {var}")
 
     def simulate_values(self):
         for var_name, var in self.variables.items():
@@ -74,7 +82,7 @@ class UnifiedNamespaceOpcUaServer:
                 new_value = random.random() * 100
             
             var.set_value(new_value)
-            print(f"{var_name}: {new_value:.2f}")
+            logging.info(f"{var_name}: {new_value:.2f}")
 
     def get_siblings(self, var: Node) -> list:
         children = var.get_parent().get_children()
@@ -82,13 +90,10 @@ class UnifiedNamespaceOpcUaServer:
         children.remove(var)
         return list(children)
 
-
-
-
     def start(self):
         self.server.start()
         self.populate_address_space()
-        print(f"Server started at {self.server.endpoint}")
+        logging.info(f"Server started at {self.server.endpoint}")
         
         try:
             while True:
@@ -98,5 +103,5 @@ class UnifiedNamespaceOpcUaServer:
             self.server.stop()
 
 if __name__ == "__main__":
-    server = UnifiedNamespaceOpcUaServer(json_file=os.environ["OPC_STRUCTURE"])
+    server = UnifiedNamespaceOpcUaServer(json_file=os.environ["OPC_STRUCTURE"], frequency=float(os.environ["TAG_FREQUENCY"]))
     server.start()
